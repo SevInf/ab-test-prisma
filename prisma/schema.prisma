@@ -1,0 +1,37 @@
+generator client {
+    provider = "prisma-client-js"
+    output   = "../node_modules/.prisma/client"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("TEST_POSTGRES_URI")
+}
+
+model User {
+    id    String  @id @default(uuid())
+    email String  @unique
+    trackingEvents TrackingEvent[]
+}
+
+model TrackingEvent {
+    id        String            @id @default(uuid())
+    timestamp DateTime          @default(now())
+    userId    String
+    type      EventType
+    variant   ExperimentVariant
+    user      User              @relation(fields: [userId], references: [id])
+}
+
+enum ExperimentVariant {
+    BlueBuyButton
+    GreenBuyButton
+}
+
+enum EventType {
+    PageOpened
+    ProductPutInShoppingCart
+    AddressFilled
+    PaymentInfoFilled
+    CheckedOut
+}

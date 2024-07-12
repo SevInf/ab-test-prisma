@@ -1,0 +1,26 @@
+{
+  "private": true,
+  "name": "basic-sqlite",
+  "description": "Prisma development playground",
+  "main": "index.ts",
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },
+  "scripts": {
+    "dbpush": "prisma db push --skip-generate",
+    "generate": "PRISMA_COPY_RUNTIME_SOURCEMAPS=1 prisma generate",
+    "test": "node -r ts-node/register --enable-source-maps index.ts",
+    "debug": "node -r ts-node/register --enable-source-maps index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "5.16.2"
+  },
+  "devDependencies": {
+    "@types/node": "18.18.9",
+    "prisma": "5.16.2",
+    "ts-node": "10.9.1"
+  }
+}
